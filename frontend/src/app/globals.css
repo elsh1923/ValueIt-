@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Home Page Precision Palette */
+  --primary: #0B3C5D; /* Deep corporate blue */
+  --secondary: #4A5D73; /* Slate gray */
+  --background: #F5F7FA; /* Home page light background */
+  --foreground: #1A1A1A; /* Home page primary text */
+  --accent: #C9A227; /* ValuMaster Gold */
+  --sidebar-bg: #0B3C5D;
+  --card-bg: #FFFFFF;
+  --border: #E1E8ED;
+  --success: #2E8B57;
+  --warning: #F0AD4E;
+  --error: #B22222;
+}
+
+.dark {
+  --primary: #FFFFFF; /* High contrast for dark mode */
+  --secondary: #6B7F95; /* Lighter slate gray */
+  --background: #0F1419; /* Home page dark background */
+  --foreground: #E8EAED; /* Light gray text */
+  --accent: #D4AF37; /* Brighter gold for dark mode */
+  --sidebar-bg: #1A1F26; /* Match home page navbar/card dark */
+  --card-bg: #1A1F26;
+  --border: #2D3748;
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-sidebar: var(--sidebar-bg);
+  --color-card: var(--card-bg);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+}

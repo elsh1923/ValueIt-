@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Project Assignment & Notifications</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #0b3c5d;
+      }
+      .step {
+        margin: 20px 0;
+        padding: 15px;
+        background: #f9f9f9;
+        border-left: 4px solid #c9a227;
+      }
+      button {
+        background: #0b3c5d;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background: #092d46;
+      }
+      input,
+      select {
+        padding: 8px;
+        margin: 5px 0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .success {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+      .info {
+        color: blue;
+      }
+      #output {
+        background: #f0f0f0;
+        padding: 15px;
+        border-radius: 4px;
+        margin-top: 20px;
+        font-family: monospace;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔔 Test Notification System</h1>
+
+      <div class="step">
+        <h3>Step 1: Login as Manager</h3>
+        <input
+          type="email"
+          id="email"
+          placeholder="manager@example.com"
+          value="manager@example.com"
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="password"
+          value="password123"
+        />
+        <button onclick="login()">Login</button>
+      </div>
+
+      <div class="step">
+        <h3>Step 2: Assign User to Project</h3>
+        <input
+          type="number"
+          id="projectId"
+          placeholder="Project ID"
+          value="1"
+        />
+        <input
+          type="number"
+          id="valuerId"
+          placeholder="Valuer User ID"
+          value="2"
+        />
+        <button onclick="assignValuer()">Assign Valuer</button>
+      </div>
+
+      <div class="step">
+        <h3>Step 3: Check Backend Terminal</h3>
+        <p>
+          After clicking "Assign Valuer", immediately check your backend
+          terminal for logs like:
+        </p>
+        <code
+          style="display: block; background: #333; color: #0f0; padding: 10px"
+        >
+          === UPDATE PROJECT 1 === ✓ Creating notification for Valuer ID: 2 ✓
+          Database commit successful
+        </code>
+      </div>
+
+      <div id="output"></div>
+    </div>
+
+    <script>
+      const BASE_URL = "http://127.0.0.1:8000/api/v1";
+      let token = "";
+
+      function log(message, type = "info") {
+        const output = document.getElementById("output");
+        const className =
+          type === "error" ? "error" : type === "success" ? "success" : "info";
+        output.innerHTML += `<span class="${className}">${message}</span>\n`;
+      }
+
+      async function login() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        log("Logging in...", "info");
+
+        try {
+          const formData = new FormData();
+          formData.append("username", email);
+          formData.append("password", password);
+
+          const response = await fetch(`${BASE_URL}/auth/login`, {
+            method: "POST",
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error(`Login failed: ${response.status}`);
+          }
+
+          const data = await response.json();
+          token = data.access_token;
+          log("✓ Login successful!", "success");
+          log(`Token: ${token.substring(0, 20)}...`, "info");
+        } catch (error) {
+          log(`❌ Error: ${error.message}`, "error");
+        }
+      }
+
+      async function assignValuer() {
+        if (!token) {
+          log("❌ Please login first!", "error");
+          return;
+        }
+
+        const projectId = document.getElementById("projectId").value;
+        const valuerId = document.getElementById("valuerId").value;
+
+        log(
+          `\nAssigning Valuer ${valuerId} to Project ${projectId}...`,
+          "info"
+        );
+        log(">>> CHECK YOUR BACKEND TERMINAL NOW! <<<", "info");
+
+        try {
+          const response = await fetch(`${BASE_URL}/projects/${projectId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              assigned_valuer_id: parseInt(valuerId),
+            }),
+          });
+
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(`Update failed: ${JSON.stringify(error)}`);
+          }
+
+          const data = await response.json();
+          log("✓ Assignment successful!", "success");
+          log(`Response: ${JSON.stringify(data, null, 2)}`, "info");
+          log("\n✓ NOW CHECK YOUR BACKEND TERMINAL FOR LOGS!", "success");
+        } catch (error) {
+          log(`❌ Error: ${error.message}`, "error");
+        }
+      }
+    </script>
+  </body>
+</html>
