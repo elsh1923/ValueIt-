@@ -83,7 +83,7 @@ export default function Home() {
             </div>
             <div className="hidden md:flex space-x-8 items-center">
               <Link href="#features" className="text-white/80 hover:text-white font-medium transition-colors text-sm">Features</Link>
-              <Link href="#solutions" className="text-white/80 hover:text-white font-medium transition-colors text-sm">Solutions</Link>
+              <Link href="/solutions" className="text-white/80 hover:text-white font-medium transition-colors text-sm">Solutions</Link>
               <Link href="#about" className="text-white/80 hover:text-white font-medium transition-colors text-sm">About</Link>
               <div className="flex items-center space-x-3 ml-4">
                 <ModeToggle />
