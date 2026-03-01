@@ -29,7 +29,7 @@ interface MaterialPrice {
 
 export default function PricingPage() {
   const { user } = useAuth();
-  const isAdmin = user?.role === "admin";
+  const isAdmin = user?.role === "admin" || user?.role === "manager";
   const [prices, setPrices] = useState<MaterialPrice[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -145,6 +145,11 @@ export default function PricingPage() {
                 ? "Maintain authoritative building material price list." 
                 : "Real-time pricing data for valuation accuracy."}
           </p>
+          {isAdmin && (
+            <span className="inline-block mt-1 text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded bg-accent/10 text-accent">
+              {user?.role === "manager" ? "Manager" : "Admin"} Access
+            </span>
+          )}
         </div>
         
         {isAdmin && (
