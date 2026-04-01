@@ -115,7 +115,9 @@ export function Sidebar() {
         <nav className="space-y-1 px-3">
           {filteredLinks.map((link) => {
             const Icon = link.icon;
-            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
+            const isActive = link.href === "/dashboard"
+              ? pathname === "/dashboard" || ["/dashboard/manager", "/dashboard/valuer", "/dashboard/inspector"].includes(pathname)
+              : pathname === link.href || pathname.startsWith(link.href + "/");
             return (
               <Link
                 key={link.href}
