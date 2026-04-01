@@ -1,0 +1,17 @@
+[project]
+name = "costbased_backend"
+version = "0.1.0"
+dependencies = [
+    "fastapi",
+    "sqlalchemy",
+    "alembic",
+    "pydantic",
+]
+
+[tool.pyright]
+include = ["app", "."]
+venvPath = ".."
+venv = "venv"
+executionEnvironments = [
+  { root = "." }
+]

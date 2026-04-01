@@ -82,9 +82,12 @@ export function Sidebar() {
 
   return (
     <div className="flex h-full w-64 flex-col border-r border-border bg-sidebar text-white transition-colors duration-300">
-      <div className="flex h-16 items-center px-6 font-bold text-xl tracking-tight border-b border-border">
+      <Link 
+        href="/" 
+        className="flex h-16 items-center px-6 font-bold text-xl tracking-tight border-b border-border hover:opacity-80 transition-opacity"
+      >
         Value<span className="text-[#C9A227]">It</span>
-      </div>
+      </Link>
       
       {/* User Profile Section at Top */}
       <div className="border-b border-border p-4 bg-white/5">

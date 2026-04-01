@@ -1,0 +1,10 @@
+{
+  "venvPath": "c:/Users/elsha/Desktop/costbased",
+  "venv": "venv",
+  "executionEnvironments": [
+    {
+      "root": "backend",
+      "extraPaths": ["."]
+    }
+  ]
+}

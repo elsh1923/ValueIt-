@@ -22,11 +22,11 @@ export default function LoginPage() {
     setIsLoading(true);
     setError("");
     try {
-      const formData = new FormData();
-      formData.append("username", data.email);
-      formData.append("password", data.password);
+      const params = new URLSearchParams();
+      params.append("username", data.email);
+      params.append("password", data.password);
       
-      const res = await api.post("/auth/login", formData, {
+      const res = await api.post("/auth/login", params, {
         headers: { "Content-Type": "application/x-www-form-urlencoded" }
       });
       

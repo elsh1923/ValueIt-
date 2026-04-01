@@ -8,10 +8,12 @@ import json
 BASE_URL = "http://127.0.0.1:8000/api/v1"
 
 # You need to replace these with actual values from your database
+# Configuration - update these to match your actual database contents
+# You can check users using 'python check_user_role.py'
 MANAGER_EMAIL = "manager@example.com"
 MANAGER_PASSWORD = "password123"
-PROJECT_ID = 1  # Replace with an actual project ID
-VALUER_ID = 2   # Replace with an actual valuer user ID
+PROJECT_ID = 1  
+VALUER_ID = 2   
 
 print("=" * 50)
 print("Testing Project Assignment & Notification")

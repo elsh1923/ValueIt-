@@ -1,13 +1,16 @@
 import asyncio
 import sys
 import os
+import traceback
 
-# Ensure backend directory is in sys.path
-sys.path.append(os.getcwd())
+# Ensure the project root is in sys.path
+script_dir = os.path.dirname(os.path.abspath(__file__))
+if script_dir not in sys.path:
+    sys.path.append(script_dir)
 
 from sqlalchemy import select
 from app.core.database import AsyncSessionLocal
-from app.models.user import User, UserRole
+from app.models import User, UserRole
 
 async def update_role(email: str, new_role: UserRole):
     print(f"Updating role for {email} to {new_role.value}...")
@@ -43,5 +46,6 @@ if __name__ == "__main__":
 
     try:
         asyncio.run(update_all_to_valuer())
-    except Exception as e:
-        print(f"Error: {e}")
+    except Exception:
+        print("An error occurred during role update:")
+        traceback.print_exc()

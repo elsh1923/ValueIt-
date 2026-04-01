@@ -76,9 +76,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0 flex items-center">
-              <span className="text-2xl font-bold text-white tracking-tight">
-                Value<span className="text-[#C9A227]">It</span>
-              </span>
+              <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+                <span className="text-2xl font-bold text-white tracking-tight">
+                  Value<span className="text-[#C9A227]">It</span>
+                </span>
+              </Link>
               <span className="ml-3 text-xs text-[#C9A227] font-semibold uppercase tracking-wider">Enterprise</span>
             </div>
             <div className="hidden md:flex space-x-8 items-center">
@@ -236,9 +238,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div className="col-span-1 md:col-span-2">
-              <span className="text-2xl font-bold text-white tracking-tight">
-                Value<span className="text-[#C9A227]">It</span>
-              </span>
+              <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
+                <span className="text-2xl font-bold text-white tracking-tight">
+                  Value<span className="text-[#C9A227]">It</span>
+                </span>
+              </Link>
               <p className="mt-4 max-w-md text-sm text-white/70 leading-relaxed">
                 The leading enterprise platform for cost-based property valuation management. 
                 Trusted by financial institutions and valuation professionals worldwide.

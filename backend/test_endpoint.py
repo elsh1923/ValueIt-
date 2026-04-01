@@ -23,6 +23,9 @@ try:
         print(f"✓ Got {len(projects)} projects")
     else:
         print(f"Response: {response.text}")
+except requests.exceptions.ConnectionError:
+    print(f"❌ Error: Could not connect to the server at {BASE_URL}.")
+    print("   Make sure the backend is running (npm run dev or python -m uvicorn...)")
 except Exception as e:
     print(f"❌ Error: {e}")
 

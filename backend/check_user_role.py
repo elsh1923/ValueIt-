@@ -1,13 +1,16 @@
 import asyncio
 import sys
 import os
+import traceback
 
-# Ensure backend directory is in sys.path
-sys.path.append(os.getcwd())
+# Ensure the project root is in sys.path
+script_dir = os.path.dirname(os.path.abspath(__file__))
+if script_dir not in sys.path:
+    sys.path.append(script_dir)
 
 from sqlalchemy import select
 from app.core.database import AsyncSessionLocal
-from app.models.user import User
+from app.models import User
 
 async def check_roles():
     print("Checking user roles...")
@@ -25,5 +28,6 @@ async def check_roles():
 if __name__ == "__main__":
     try:
         asyncio.run(check_roles())
-    except Exception as e:
-        print(f"Error: {e}")
+    except Exception:
+        print("An error occurred during role check:")
+        traceback.print_exc()

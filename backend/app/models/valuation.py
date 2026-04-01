@@ -22,4 +22,7 @@ class Valuation(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     
     project = relationship("Project", back_populates="valuations")
-    valuer = relationship("User")
+    valuer = relationship("User", backref="valuations")
+
+    def __repr__(self):
+        return f"<Valuation(id={self.id}, project_id={self.project_id}, valuer_id={self.valuer_id}, value={self.calculated_value})>"

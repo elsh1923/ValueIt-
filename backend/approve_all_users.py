@@ -1,13 +1,17 @@
 import asyncio
 import sys
 import os
+import traceback
 
-# Ensure backend directory is in sys.path
-sys.path.append(os.getcwd())
+# Ensure the project root is in sys.path
+# This works regardless of where the script is called from
+script_dir = os.path.dirname(os.path.abspath(__file__))
+if script_dir not in sys.path:
+    sys.path.append(script_dir)
 
 from sqlalchemy import select
 from app.core.database import AsyncSessionLocal
-from app.models.user import User
+from app.models import User # Importing from app.models ensures all models are registered
 
 async def approve_all():
     print("Starting user approval process...")
@@ -32,5 +36,6 @@ async def approve_all():
 if __name__ == "__main__":
     try:
         asyncio.run(approve_all())
-    except Exception as e:
-        print(f"Error: {e}")
+    except Exception:
+        print("An error occurred during user approval:")
+        traceback.print_exc()
