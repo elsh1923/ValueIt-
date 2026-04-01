@@ -166,7 +166,7 @@ export default function CalculationWorkspace({ projectId, onSaveSuccess }: { pro
                     className={cn(
                         "flex items-center space-x-2 px-6 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all",
                         activeSection === tab.id 
-                            ? "bg-primary text-white shadow-lg shadow-primary/20 scale-[1.02]" 
+                            ? "bg-accent text-[#0B3C5D] shadow-lg shadow-accent/20 scale-[1.02]" 
                             : "text-secondary/60 hover:text-primary hover:bg-secondary/10"
                     )}
                 >
@@ -408,7 +408,7 @@ export default function CalculationWorkspace({ projectId, onSaveSuccess }: { pro
 
                 {activeSection === "summary" && (
                     <div className="space-y-8 animate-in fade-in duration-500">
-                        <Card className="border-none shadow-2xl bg-gradient-to-br from-primary via-[#124A6F] to-primary text-white overflow-hidden relative p-12 rounded-[2.5rem]">
+                        <Card className="border-none shadow-2xl bg-gradient-to-br from-[#0B3C5D] via-[#124A6F] to-[#0B3C5D] text-white overflow-hidden relative p-12 rounded-[2.5rem]">
                             <TrendingUp className="absolute right-[-40px] top-[-40px] h-96 w-96 text-white/[0.03]" />
                             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                                 <div className="space-y-6">

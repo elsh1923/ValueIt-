@@ -69,7 +69,7 @@ export default function ValuationsPage() {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <Card className="bg-primary text-white border-none shadow-xl">
+            <Card className="bg-accent text-[#0B3C5D] border-none shadow-xl">
                 <CardContent className="p-6">
                     <p className="text-[10px] font-black uppercase tracking-widest opacity-60">Total Appraisals</p>
                     <p className="text-3xl font-black mt-2">{valuations.length}</p>

@@ -310,16 +310,16 @@ export default function ProfilePage() {
           </div>
 
           {/* User Basic Info */}
-          <div className="flex-1 text-center md:text-left md:pb-4 space-y-1">
-            <h1 className="text-3xl font-bold text-primary dark:text-white">
+          <div className="flex-1 text-center md:text-left md:pb-8 space-y-2">
+            <h1 className="text-3xl font-extrabold text-white drop-shadow-md">
                 {user.full_name && user.full_name !== user.email ? user.full_name : "Complete Your Profile"}
             </h1>
             <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-accent/10 text-accent border border-accent/20">
-                   <ShieldCheck className="h-3 w-3 mr-1.5" /> {user.role}
+                <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-black/30 text-accent border border-white/10 backdrop-blur-md">
+                   <ShieldCheck className="h-3.5 w-3.5 mr-2" /> {user.role}
                 </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary dark:text-slate-400 border border-border">
-                   <Mail className="h-3 w-3 mr-1.5" /> {user.email}
+                <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold bg-black/20 text-white border border-white/10 backdrop-blur-md">
+                   <Mail className="h-3.5 w-3.5 mr-2" /> {user.email}
                 </span>
             </div>
             {(!user.full_name || user.full_name === user.email) && (
