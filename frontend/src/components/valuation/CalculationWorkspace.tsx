@@ -106,6 +106,11 @@ export default function CalculationWorkspace({ projectId, onSaveSuccess }: { pro
   const improvementValue = replacementCost * (1 - depreciationPercent / 100);
   const finalValuation = improvementValue + landValue;
 
+  const filteredPrices = prices.filter(p => 
+    p.material_name.toLowerCase().includes(search.toLowerCase())
+  );
+
+
   const handleSaveValuation = async () => {
     setIsSaving(true);
     try {
