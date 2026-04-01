@@ -135,10 +135,11 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/login">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-base h-12 border-white/30 text-white hover:bg-white/10">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-base h-12 border-white/30 text-white bg-transparent hover:bg-white/10">
                     Request Demo
                   </Button>
                 </Link>
+
               </motion.div>
 
               {/* Stats Row */}
